@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Authentication</title>
+</head>
+<body>
+    <button id="login-btn">Login with Spotify</button>
+
+    <script>
+        document.getElementById('login-btn').addEventListener('click', () => {
+            window.location = 'https://accounts.spotify.com/authorize?client_id=1aa055640a654a319b37359d9642d9f2&response_type=token&redirect_uri=http://127.0.0.1:5500/index.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +8,18 @@
 <body>
     <button id="login-btn">Login with Spotify</button>
 
+    <div id="token-container"></div>
+
     <script>
-        document.getElementById('login-btn').addEventListener('click', () => {
-        window.location = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&redirect_uri=https://dossantosmicael.github.io/spotify-playlist/`;
-    });
+        document.getElementById('login-btn').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/getAccessToken');
+                const token = await response.text();
+                document.getElementById('token-container').innerText = 'Access Token: ' + token;
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        });
     </script>
 </body>
 </html>

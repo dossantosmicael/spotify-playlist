@@ -1,8 +1,16 @@
+require('dotenv').config();
+
 const axios = require('axios');
 const btoa = require('btoa');
 
-const client_id = '1aa055640a654a319b37359d9642d9f2';
-const client_secret = '35c376bf5ee243f4be749d429eaf7aaa';
+const authenticateSpotify = () => {
+    const client_id = process.env.CLIENT_ID;
+    const client_secret = process.env.CLIENT_SECRET;
+
+// Verifica se as variáveis de ambiente foram carregadas corretamente
+if (!client_id || !client_secret) {
+    throw new Error('CLIENT_ID ou CLIENT_SECRET não definidos no arquivo .env');
+}
 
 // Conversão da Autenticação para base64
 const string = client_id + ':' + client_secret;
@@ -27,3 +35,6 @@ axios.post(url, data, { headers })
     .catch(error => {
         console.error('Erro:', error);
     });
+}
+
+module.exports = authenticateSpotify;
